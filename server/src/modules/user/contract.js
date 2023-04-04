@@ -1,8 +1,7 @@
 exports.User = `
 
 type User {
-    _id: ID
+    id: ID
     fullName: String
     email: String
-    password: String
 }`;

@@ -20,7 +20,7 @@ type Query {
 }
 
 type Mutation {
-    signupUser(fullName: String, email: String!, mobile: String, password: String!): SignupUser
+    signupUser(fullName: String, email: String!, password: String!): SignupUser
     login(email: String!, password: String!): AuthData
 
 }`;
