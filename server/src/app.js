@@ -6,7 +6,7 @@ const cors = require("cors");
 const { graphqlHTTP } = require("express-graphql");
 const { applyMiddleware } = require("graphql-middleware");
 const { makeExecutableSchema } = require("@graphql-tools/schema");
-// const { graphqlUploadExpress } = require("graphql-upload");
+const { graphqlUploadExpress } = require("graphql-upload");
 const { resolvers, typeDefs, permissions } = require("./modules");
 const isAuth = require("./middleware/auth");
 
@@ -19,7 +19,7 @@ const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 app.use(
   "/graphql",
-  // graphqlUploadExpress({ maxFileSize: 20000000000, maxFiles: 2 }),
+  graphqlUploadExpress({ maxFileSize: 200000000000000000, maxFiles: 3 }),
   graphqlHTTP((request, response, graphQLParams) => ({
     schema: applyMiddleware(schema, permissions),
     graphiql: true,

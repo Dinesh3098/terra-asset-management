@@ -3,18 +3,19 @@ const { shield } = require("graphql-shield");
 const { mergeTypeDefs } = require("@graphql-tools/merge");
 const { buildSchema, print, GraphQLError } = require("graphql");
 const User = require("./user");
+const Asset = require("./asset");
 
 const typeDefs = [
   User.typeDef,
+  Asset.typeDef,
 ];
 
 const resolvers = [
   User.resolvers,
+  Asset.resolvers,
 ];
 
-const permissions = [
-  User.permissions,
-];
+const permissions = [];
 
 const mergedTypeDef = print(mergeTypeDefs(typeDefs));
 exports.typeDefs = buildSchema(mergedTypeDef);

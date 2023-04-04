@@ -15,7 +15,7 @@ exports.getToken = (id, email, secret, expireTime) => {
 };
 
 // API for user signup or user creation
-exports.signupUser = async (fullName, email, mobile, password) => {
+exports.signupUser = async (fullName, email, password) => {
   try {
     const user = await User.getUser({ email: email });
     if (user) {
@@ -26,7 +26,6 @@ exports.signupUser = async (fullName, email, mobile, password) => {
         email: email,
         fullName: fullName,
         password: encryPassword,
-        mobile: mobile,
       });
 
       const token = this.getToken(userData._id, userData.email);
@@ -49,11 +48,6 @@ exports.login = async (email, password) => {
     if (!user) {
       throw new Error(messages.user.get_error);
     }
-
-    const coreSkillsLength = user?.coreSkills?.length;
-
-    let isSkillLengthZero;
-    isSkillLengthZero = coreSkillsLength === 0;
 
     const isEqual = await bcrypt.compare(password, user.password);
     if (!isEqual) {
