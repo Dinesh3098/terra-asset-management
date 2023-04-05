@@ -58,6 +58,7 @@ exports.login = async (email, password) => {
     return {
       userId: user.id,
       token: token,
+      fullName: user.fullName
     };
   } catch (error) {
     throw error;
