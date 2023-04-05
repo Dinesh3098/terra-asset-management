@@ -6,6 +6,7 @@ ${User}
 
 type AuthData {
     token: String
+    fullName: String
     userId: ID
 }
 
